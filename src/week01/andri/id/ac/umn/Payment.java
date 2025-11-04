@@ -1,14 +1,42 @@
 package week01.andri.id.ac.umn;
 
 public abstract class Payment {
-	protected double amount;
-	public Payment(double amount) {
-		this.amount = amount;
+	protected boolean isPaidOff;
+	protected Item item;
+	
+	public Payment() {
+		this.isPaidOff = false;
+		this.item = null;
 	}
 	
-	abstract void processPayment();
+	public Payment(Item item) {
+		this.isPaidOff = false;
+		this.item = item;
+	}
 	
-	public void paymentDetails() {
-		System.out.println("Processing payment of $" + amount);
+	public boolean isPaidoff() {
+		return isPaidOff;
+	}
+	
+	public Item getItem() {
+		return item;
+	}
+	
+	public String getItemName() {
+		return item.getName();
+	}
+	
+	public String gerStatus() {
+		if(isPaidOff) {
+			return "FINISHED";
+		}
+		return "ON PROGRESS";
+	}
+	
+	public int getRemainingAmount() {
+		if(isPaidOff) {
+			return 0;
+		}
+		return item.getPrice();
 	}
 }
